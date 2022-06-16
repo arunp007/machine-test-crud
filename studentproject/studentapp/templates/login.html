@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        form{
+            background-color: orchid;
+            border-radius: 10px;
+            width: 500px;
+            margin-top: 40px;
+            margin-left: 400px;
+            padding-top: 30px;
+            padding-left: 60px;
+            border: 2px solid pink;
+        }
+
+        h1{
+            font-size: 80px;
+            font-weight: bolder;
+            margin-bottom: 50px;
+            text-align: center;
+            color: white;
+        }
+
+        input[type="email"]{
+            width: 400px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid pink;
+
+        }
+
+        input[type="text"]{
+            width: 400px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid pink;
+        }
+
+        .btn-outline-warning{
+            margin-bottom: 50px;
+
+        }
+
+        
+    </style>
+</head>
+<body> 
+    <div class="col-xs-5 col-lg-5">
+          <form method="post">
+              {% csrf_token %}
+              <center><h1>Login</h1></center>
+              <div class="form-group" style="color: white;">
+                <label for="InputEmail1">Username</label>
+                <input type="email" class="form-control col-md-12" name="username" id="username" aria-describedby="user" placeholder="Username" onkeyup="uservalid()">
+                <label id="user_error"></label>
+              </div>
+              <div class="form-group" style="color: white;">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="text" class="form-control col-md-12" name="password" id="password" placeholder="Password" onkeyup="passvalid()">
+                <label id="password_error"></label>
+              </div>
+              <center><button onclick="return validation()" class="btn btn-outline-warning col-md-9">Login</button></center><br><br><br>
+          </form>
+      </div>
+  </div>
+
+
+<script>
+    function validation(){
+        var status = 1
+        var user = document.getElementById('username')
+        var password = document.getElementById('password')
+
+        if(user.value == ""){
+            document.getElementById('username').style.borderColor="red"
+            document.getElementById('user_error').innerHTML="** Please Enter Your Username **"
+            document.getElementById('user_error').style.color="red"
+            document.getElementById('user_error').style.display="block"
+            var status = 0
+        }
+
+        else{
+            document.getElementById('username').style.borderColor="black"
+            document.getElementById('user_error').style.display="none"
+            var status = 1
+        }
+
+        if(password.value == ""){
+            document.getElementById('password').style.borderColor="red"
+            document.getElementById('password_error').innerHTML="** Please Enter Your Password **"
+            document.getElementById('password_error').style.color="red"
+            document.getElementById('password_error').style.display="block"
+            var status = 0
+        }
+  
+        else{
+            document.getElementById('password').style.borderColor="black"
+            document.getElementById('password_error').style.display="none"
+            var status = 1
+        }
+  
+        if(status == 0){
+             return false
+        }
+
+        if(status == 1){
+            return true
+        }
+
+    }
+
+    function uservalid(){
+        var user = document.getElementById('username').value
+
+        if(isNaN(user)){
+            document.getElementById('username').style.borderColor="black"
+            document.getElementById('user_error').style.display="none" 
+        }
+ 
+        else{
+            document.getElementById('username').style.borderColor="red"
+            document.getElementById('user_error').innerHTML="** Please Enter A Valid Username **"
+            document.getElementById('user_error').style.color="red"
+            document.getElementById('user_error').style.display="block"
+        }
+
+    }
+
+    function passvalid(){
+        var password = document.getElementById('password').value
+        if(password.length <= 8){
+            document.getElementById('password').style.borderColor="red"
+            document.getElementById('password_error').innerHTML="** Password Must Contain 8 Characters **"
+            document.getElementById('password_error').style.color="red"
+            document.getElementById('password_error').style.display="block"
+        }
+
+        if(password.length == 8){
+            document.getElementById('password').style.borderColor="green"
+            document.getElementById('password_error').innerHTML="** You Entered Perfect Password **"
+            document.getElementById('password_error').style.color="green"
+            document.getElementById('password_error').style.display="block"
+        }
+
+        if(password.length == 9){
+            document.getElementById('password').style.borderColor="red"
+            document.getElementById('password_error').innerHTML="** Password Must Have 8 characters **"
+            document.getElementById('password_error').style.color="red"
+            document.getElementById('password_error').style.display="block" 
+        }
+
+    }
+
+
+
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
