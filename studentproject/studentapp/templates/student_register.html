@@ -12,18 +12,8 @@
             background-color: cadetblue;
         }
 
-        a{
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        a:hover{
-            color: gold;
-        }
-
         form{
-            background-color: orchid;
+            background-color: black;
             border-radius: 10px;
             width: 500px;
             margin-top: 40px;
@@ -49,7 +39,6 @@
             width: 400px;
             height: 40px;
             margin-left: 50px;
-            border-radius: 10px;
             border: 2px solid pink;
 
         }
@@ -58,7 +47,6 @@
             width: 400px;
             height: 40px;
             margin-left: 50px;
-            border-radius: 10px;
             border: 2px solid pink;
         }
 
@@ -67,78 +55,46 @@
 
         }
 
-        #footer{
-            background-color: darkmagenta;
-            height: 100px;
-        }
-
-        .label{
-            margin-left: 30px;
-            margin-top: 30px;
-        }
+      
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#" style="font-weight: bolder; font-size: 35px;">Student Details Management System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'admin' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'registration' %}">Register Student</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">View Active Students</a>
-              </li>
-          </ul>
-            <button type="submit" class="btn btn-warning">Logout</button>
-        </div>
-    </nav>
     <div class="col-xs-8 col-lg-8">
         <form method="post">
             {% csrf_token %}
             <center><h1>Student Registion</h1></center>
             <div class="form-group" style="color: white;">
               <label for="InputName">Name</label>
-              <input type="text" class="form-control col-md-12" name="name" id="name" placeholder="Name" onkeyup="return namevalid()">
+              <input type="text" class="form-control col-md-12" value="{{update.name}}" name="name" id="name" placeholder="Name" onkeyup="namevalid()">
               <label id="name_error"></label>
             </div>
             <div class="form-group" style="color: white;">
               <label for="exampleInputContact">Contact</label>
-              <input type="text" class="form-control col-md-12" name="contact" id="contact" placeholder="Contact" onkeyup="contactvalid()">
+              <input type="text" class="form-control col-md-12" value="{{update.contact}}" name="contact" id="contact" placeholder="Contact" onkeyup="contactvalid()">
               <label id="contact_error"></label>
             </div>
             <div class="form-group" style="color: white;">
                 <label for="exampleInputEmail">Email</label>
-                <input type="email" class="form-control col-md-12" name="email" id="email" placeholder="Email" onkeyup="emailvalid()">
+                <input type="email" class="form-control col-md-12" value="{{update.email}}" name="email" id="email" placeholder="Email" onkeyup="emailvalid()">
                 <label id="email_error"></label>
             </div>
             <div class="form-group" style="color: white;">
                 <label for="exampleInputUsername">Username</label>
-                <input type="text" class="form-control col-md-12" name="username" id="username" placeholder="Username" onkeyup="usernamevalid()">
+                <input type="text" class="form-control col-md-12" value="{{update.username}}" name="username" id="username" placeholder="Username" onkeyup="usernamevalid()">
                 <label id="username_error"></label>
             </div>
             <div class="form-group" style="color: white;">
                 <label for="exampleInputPassword">Password</label>
-                <input type="text" class="form-control col-md-12" name="password" id="password" placeholder="Password" onkeyup="passwordvalid()">
+                <input type="text" class="form-control col-md-12" value="{{update.password}}" name="password" id="password" placeholder="Password" onkeyup="passwordvalid()">
                 <label id="password_error"></label>
             </div>
             <div class="form-group" style="color: white;">
                 <label for="exampleInputConfirmPassword">Confirm Password</label>
-                <input type="text" class="form-control col-md-12" name="cpassword" id="cpassword" placeholder="Confirm Password" onkeyup="cpasswordvalid()">
+                <input type="text" class="form-control col-md-12" value="{{update.cpassword}}" name="cpassword" id="cpassword" placeholder="Confirm Password" onkeyup="cpasswordvalid()">
                 <label id="cpassword_error"></label>
               </div>
             <center><button type="submit" onclick="return validation()" class="btn btn-outline-warning col-md-10">Login</button></center><br><br>
         </form>
-    </div>
-    
-    <div class="col-xs-12 col-lg-12" id="footer">
-        <center><a href=""><label class="label">©Student Details Management</label></a> <a href=""><label class="label">Developed By Arun Pacheeri</label></a></center>
     </div>
     <script>
         function validation(){

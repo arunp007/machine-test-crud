@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,37 +12,99 @@
             background-color: orchid;
         }
 
-        #container1{
-            border: 5px solid white;
-            height: 650px;
-            border-radius: 10px;
-        }
-
-        #container2{
-            border: 5px solid white;
-            height: 650px;
-            border-radius: 10px;
-        }
-
         a{
             color: white;
-            font-size: 30px;
+            font-size: 20px;
+            text-decoration: none;
+        }
 
+        a:hover{
+            color: gold;
+        }
+
+        #navigation{
+            background-color: dimgray;
+            height: 600px;
+            padding-top: 20px;
+        }
+
+        .icon{
+            background-color: black;
+            width: 150px;
+            height: 150px;
+            border-radius: 300px;
+            padding-top: 10px;
+            padding-left: 25px;
+            margin-left: 60px;
+        }
+
+        #footer{
+            background-color: darkmagenta;
+            height: 100px;
+        }
+
+        h1{
+            position: fixed;
+            margin-left: 450px;
+            margin-top: 150px;
+        }
+
+        label{
+            margin-left: 30px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-3 col-lg-3" id="container1">
-               <a href="{% url 'registration' %}" style="text-decoration: none;">Register Student</a><br>
-               <a href="" style="text-decoration: none;">View Active Students</a><br>
-            </div>
-            <div class="col-xs-9 col-lg-9" id="container2">
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" style="font-weight: bolder; font-size: 35px;">Student Details Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link active" href="{% url 'admin' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'registration' %}">Register Student</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">View Active Students</a>
+              </li>
+          </ul>
+            <button type="submit" class="btn btn-warning"><a href="{% url 'logout_admin' %}" style="text-decoration: none;">Logout</a></button>
         </div>
+    </nav>
+    <div class="col-xs-8 col-lg-8">
+       <center> <h1>Welcome To Student Management System</h1></center>
+    </div>
+    <div class="col-xs-3 col-lg-3" id="navigation">
+        <div class="icon">
+            <img src="{% static 'images/admin_icon.png' %}" width="100px">
+        </div>
+        <ul class="navbar-nav mr-auto" style="padding-top: 20px;">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'admin' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'registration' %}">Register Student</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">View Active Students</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout_admin' %}">Logout</a>
+            </li>
+        </ul>
     </div>
    
+
+    <div class="col-xs-12 col-lg-12" id="footer">
+        <center><a href=""><label for="">©Student Details Management</label></a> <a href=""><label for="">Developed By Arun Pacheeri</label></a></center>
+    </div>
+    
     
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

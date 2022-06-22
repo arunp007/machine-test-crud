@@ -1,32 +1,95 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration Details</title>
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: palegreen;
+        }
+
+        a{
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        a:hover{
+            color: gold;
+        }
+
+        h1{
+            font-size: 50px;
+            font-weight: bolder;
+            margin-bottom: 50px;
+            color: black;
+        }
+
+        
+        label{
+            margin-left: 50px;
+        }
+
+        #footer{
+            background-color: darkmagenta;
+            height: 100px;
+        }
+
+        .label{
+            margin-left: 30px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <table border="2" width="100%">
-        <tr>
-            <th>Name</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Confirm Password</th>
-        </tr>
-        {% for i in info %}
-        <tr>
-            <td>{{i.name}}</td>
-            <td>{{i.contact}}</td>
-            <td>{{i.email}}</td>
-            <td>{{i.username}}</td>
-            <td>{{i.password}}</td>
-            <td>{{i.cpassword}}</td>
-            <td><button><a href="{% url 'update' i.id %}">Update</a></button></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" style="font-weight: bolder; font-size: 35px;">Student Details Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="">Home</a>
+            </li>
+          </ul>
+            <button type="submit" class="btn btn-warning"><a href="{% url 'logout_student' %}" style="text-decoration: none;">Logout</a></button>
+        </div>
+    </nav>
+    <div class="col-xs-12 col-lg-12">
+        <center><h1>Profile Details</h1></center>
+        <table border="2" width="100%" class="table table-dark" style="margin-bottom: 300px;">
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Confirm Password</th>
+            </tr>
+            {% for i in info %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.contact}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.username}}</td>
+                <td>{{i.password}}</td>
+                <td>{{i.cpassword}}</td>
+                <td><button class="btn btn-primary"><a href="{% url 'update' i.id %}">Update</a></button></td>
+                <td><button class="btn btn-danger"><a href="{% url 'delete' i.id %}">Delete</a></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    <div class="col-xs-12 col-lg-12" id="footer">
+        <center><a href=""><label class="label">©Student Details Management</label></a> <a href=""><label class="label">Developed By Arun Pacheeri</label></a></center>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 </html>
